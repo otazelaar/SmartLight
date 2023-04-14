@@ -1,0 +1,22 @@
+import dependencies.Versions
+
+buildscript {
+    ext.kotlin_version = Versions.kotlin
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.4.2"
+
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:${Versions.junit5}"
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
