@@ -9,14 +9,15 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.smartlight.domain.model.Data
+import androidx.compose.ui.test.isToggleable
+import com.example.smartlight.domain.model.Light
 
 @Composable
 fun LightList(
-    lights: List<Data>,
+    Lights: List<Light>,
     onChangeBookScrollPosition: (Int) -> Unit,
     onChangedScrollPosition: (Int) -> Unit,
-    newLightSearchEvent: () -> Unit,
+    onClickLightOnEvent: (Light) -> Unit,
 ){
     Box(
         modifier = Modifier
@@ -28,17 +29,15 @@ fun LightList(
             state = lightListScrollState,
         ){
             itemsIndexed(
-                items = lights,
+                items = Lights,
             ){index, light ->
                 onChangeBookScrollPosition(index)
                 LightListView(
                     light = light,
-                    newLightSelectedEvent = {
-                        // Not sure about the following function and what it is doing yet
+                    onClickedLightOnEvent = { light ->
                         onChangedScrollPosition(lightListScrollState.firstVisibleItemIndex)
-                        newLightSearchEvent()
+                        onClickLightOnEvent(light)
                     },
-                    newLightOnEvent = newLightSearchEvent,
                 )
             }
         }

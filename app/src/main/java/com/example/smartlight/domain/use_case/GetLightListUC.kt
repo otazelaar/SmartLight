@@ -4,7 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.smartlight.data.network.PhillipsHueApiService
 import com.example.smartlight.data.network.model.toData
-import com.example.smartlight.domain.model.Data
+import com.example.smartlight.domain.model.Light
 import com.example.smartlight.domain.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 class GetLightListUC(
     private val phillipsHueApiService: PhillipsHueApiService,
 ) {
-    fun execute(): Flow<DataState<List<Data>>> = flow {
+    fun execute(): Flow<DataState<List<Light>>> = flow {
         try {
             emit(DataState.loading())
 
@@ -27,7 +27,7 @@ class GetLightListUC(
         }
     }
 
-    private suspend fun getLightInfoNetworkCall(): List<Data> {
+    private suspend fun getLightInfoNetworkCall(): List<Light> {
         return phillipsHueApiService.getLights().dataDto.map { it.toData() }
     }
 

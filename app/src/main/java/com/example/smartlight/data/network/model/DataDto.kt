@@ -1,6 +1,6 @@
 package com.example.smartlight.data.network.model
 
-import com.example.smartlight.domain.model.Data
+import com.example.smartlight.domain.model.Light
 import com.google.gson.annotations.SerializedName
 
 data class DataDto(
@@ -12,13 +12,20 @@ data class DataDto(
     @SerializedName("type") var type: String
 )
 
-fun DataDto.toData(): Data {
-    return Data(
+fun List<ServiceDto>.getListServiceId(): String {
+    return this.find { serviceDto ->
+        serviceDto.rtype == "light"
+    }?.rid.orEmpty()
+}
+
+fun DataDto.toData(): Light {
+    return Light(
         id = id,
         id_v1 = id_v1,
         metadataDto = metadataDto,
         product_data = productDataDto,
-        serviceDtos = servicesDtos,
+        serviceId = servicesDtos.getListServiceId(),
         type = type,
+        toggleLight = false,
     )
 }
