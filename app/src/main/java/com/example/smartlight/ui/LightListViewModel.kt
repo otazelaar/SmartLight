@@ -58,6 +58,8 @@ class LightListViewModel @Inject constructor(
         val toggleLight = !light.toggleLight
 
         postLightUC.execute(serviceId, toggleLight)
+        // store toggleLightSate everytime I call this UC so that I can check
+        // if the light is on or off when calling this function.
     }
 
     fun onChangedBookScrollPosition(position: Int){

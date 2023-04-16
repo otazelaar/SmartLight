@@ -23,6 +23,12 @@ class PostLightUC(
 
         // check state of light
         // change Boolean value to opposite of wtv
+        // toggleLight is false until told to be true
+//        val lightOn = true
+//        if(!toggleLight){
+//            toggleLight
+//        }
+
         val body = Json(on = On(on = toggleLight))
 
         Log.e(TAG, "JSON postlighttonetwork is running")

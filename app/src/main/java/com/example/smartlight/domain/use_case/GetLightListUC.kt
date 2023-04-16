@@ -28,7 +28,7 @@ class GetLightListUC(
     }
 
     private suspend fun getLightInfoNetworkCall(): List<Light> {
-        return phillipsHueApiService.getLights().dataDto.map { it.toData() }
+        return phillipsHueApiService.getLights().lightDto.map { it.toData() }
     }
 
 //    private suspend fun getLightInfoNetworkCall2(): List<Service> {

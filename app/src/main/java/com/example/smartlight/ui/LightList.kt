@@ -34,7 +34,7 @@ fun LightList(
                 onChangeBookScrollPosition(index)
                 LightListView(
                     light = light,
-                    onClickedLightOnEvent = { light ->
+                    onClickedLightOnEvent = {
                         onChangedScrollPosition(lightListScrollState.firstVisibleItemIndex)
                         onClickLightOnEvent(light)
                     },
